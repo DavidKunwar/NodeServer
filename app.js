@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 
-mongoose.connect('mongodb://localhost:27017/userDB', {
+mongoose.connect('mongodb+srv://admin-david:test123@cluster0.i5tfi.mongodb.net/userDB', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
@@ -73,6 +73,11 @@ app.delete('/delete', function(req, res){
 
 
 
-app.listen(3000, function(req, res){
-    console.log('Server is up and running on port 3000.')
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3000;
+}
+
+app.listen(port, function(){
+    console.log("Server is up and running.");
 });
